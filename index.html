@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Эксперимент</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="webgazer.js"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+ 
+</head>
+<body>
+
+ <!-- ЭКРАН 1: Ввод пользователя -->
+<div id="screen-1">
+  <h1>Добро пожаловать на тестирование пользовательского интерфейса маркетплейсов!</h1>
+  <h2>Правила тестирования</h2>
+
+  <ol class="instructions-list">
+    <li>Получите у организатора персональный номер и введите свои данные в систему.</li>
+    <li>Если вы носите очки и будете участвовать в них, предупредите организатора.</li>
+    <li>После ввода данных откроется основное окно тестирования.</li>
+    <li>Сядьте удобно и старайтесь не двигаться во время теста – это важно для точности измерений.</li>
+    <li>Включите отслеживание взгляда и убедитесь, что ваше лицо полностью попадает в зону захвата.</li>
+    <li>Пройдите калибровку: смотрите на красные точки и кликайте по ним. После правильного нажатия они станут зелёными.</li>
+    <li>Выберите маркетплейс и страницу для теста, затем нажмите «Начать эксперимент».</li>
+    <li>Выполняйте задания, появляющиеся на экране. Просто находите взглядом нужные элементы.</li>
+    <li>Повторите тест для других маркетплейсов и страниц.</li>
+    <li>Если взгляд фиксируется неточно, пройдите калибровку снова.</li>
+    <li>После изучения всех страниц пройдите опрос. </li>
+    <li>Проверьте что в папке сформировались 13 файлов с вашем id в названии.</li>
+    <li>Сообщите организатору о завершении.</li>
+    <li>При возникновении вопросов сразу обращайтесь к организатору</li>
+  </ol>
+
+  <h2>Удачи и спасибо за участие!</h2>
+  <button id="start-btn">Начать тестирование</button>
+
+  <!-- Блок разработчика -->
+  <div class="dev-block">
+    <h1>Проведение исследования (для разработчиков)</h1>
+    <button onclick="window.location.href = '/generate_maps.html';"> Приступить к исследованию</button>
+     <h1>Провести ДЕМО-исследование</h1>
+    <button onclick="window.location.href = '/custom_research.html';"> Приступить к исследованию</button>
+  </div>
+</div>
+
+
+</div>
+ <!-- Подтверждение чтения правил -->
+<div id="rules-confirmation" class="modal-overlay" style="display: none;">
+  <div class="modal-content" >
+    <p>Подтвердите, что вы внимательно прочитали правила тестирования.</p>
+    <button id="confirm-rules" class="modal-button">Да, я изучил(а) правила</button>
+    <button id="cancel-rules" class="modal-button">Нет, вернуться к правилам</button>
+  </div>
+</div>
+
+  <!-- ЭКРАН 1.1: Форма пользователя -->
+  <div id="form-screen" style="display: none;">
+    <h3>Введите информацию</h3>
+    <label>Номер участника: <input type="number" id="participant-id" /></label><br>
+    <label>Пол:
+      <select id="gender">
+        <option>мужской</option>
+        <option>женский</option>
+      </select>
+    </label><br>
+    <label>Возраст: <input type="number" id="age" /></label><br>
+    
+    <label class="checkbox-label">
+     <input type="checkbox" id="agree-data" /> Я согласен на обработку анонимизированных данных</label><br>
+      
+     <label class="checkbox-label">
+     <input type="checkbox" id="agree-experiment" /> Я согласен на участие в эксперименте</label><br><br>
+
+    <button id="submit-user-btn" disabled> Готово </button>
+  </div>
+
+  <!-- ЭКРАН 2: Панель управления -->
+<div id="control-screen" style="display: none;">
+  <div id="ui-container">
+    <h3>Участник №<span id="current-id"></span></h3>
+
+    <div class="button-row">
+      <button id="start-tracking">Начать отслеживание</button>
+      <button id="stop-tracking">Закончить отслеживание</button>
+      <button id="calibrate">Калибровка</button>
+    </div>
+
+    <fieldset class="radio-group">
+      <legend>Выберите площадку</legend>
+      <div class="radio-row">
+        <label><input type="radio" name="marketplace" value="Ozon" /> Ozon</label>
+        <label><input type="radio" name="marketplace" value="Wildberries" /> Wildberries</label>
+        <label><input type="radio" name="marketplace" value="ЯндексМаркет" /> Яндекс Маркет</label>
+        <label><input type="radio" name="marketplace" value="МегаМаркет" /> Мега Маркет</label>
+      </div>
+    </fieldset>
+
+    <fieldset class="radio-group">
+      <legend>Выберите раздел</legend>
+      <div class="radio-row">
+        <label><input type="radio" name="section" value="Главная" /> Главная</label>
+        <label><input type="radio" name="section" value="Поиск" /> Поиск</label>
+        <label><input type="radio" name="section" value="Карточка" /> Карточка товара</label>
+      </div>
+    </fieldset>
+
+    <button id="start-experiment" disabled>Начать эксперимент</button>
+    <button id="go-to-survey">Пройти опрос</button>
+    <button id="exit-exp">Завершить участие в эксперименте</button>
+  </div>
+</div>
+
+  <div id="experiment-screen" style="display: none;">
+    <button id="end-experiment" style="display: none;">Закончить эксперимент</button>
+    <iframe id="myIframe" style="pointer-events: none;"></iframe>
+</div>
+
+<!-- ЭКРАН ОПРОСА-->
+<div id="survey-screen" style="display: none;">
+  <h2>Оцените следующие утверждения</h2>
+  <form id="survey-form"></form>
+  <button id="submit-survey">Завершить участие в эксперименте</button>
+</div> 
+
+<!-- ФРЕЙМ С ТЕПЛОВОЙ КАРТОЙ -->
+ <!--<div style="position: relative; width: 100vw; height: 1264px;">
+  <iframe
+    src="html_marketplace/Wildberries.html"
+    style="width: 100%; height: 100%; border: none;"
+  ></iframe>
+
+  <img
+    src="php/img_generate/heatmap2.png"
+    style="
+      position: absolute;
+      top: 0;
+      left:1200px;
+     
+      height: 5000px;
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 10;
+    "
+  />
+
+
+<div style="position: relative; width: 100vw; height: 12564px;">
+  <iframe
+    src="html_marketplace/Ozon.html"
+    style="width: 100%; height: 100%; border: none;"
+  ></iframe>
+
+  <img
+    src="php/img_generate/heatmap2_zone.png"
+    style="
+      position: absolute;
+      top: 0;
+      left:0px;
+     width: 100%;
+      height: 12564px;
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: 10;
+    "
+  />
+</div>
+</div> -->
+
+<div id="calibration-instruction-modal" class="modal-overlay" style="display: none;">
+  <div class="modal-content" style="max-width: 400px; text-align: center;">
+    <h3>Инструкция по калибровке</h3>
+    <ol style="text-align: left;">
+      <li>Настройте размер экрана, чтобы вам была видна сетка из точек 5×4.</li>
+      <li>В любом порядке нажимайте на точки, не торопитесь.</li>
+      <li>Как только все точки будут нажаты, калибровка завершится автоматически.</li>
+    </ol>
+    <button id="calibration-start-btn">ОК</button>
+  </div>
+</div>
+
+
+<div id="task-modal" class="modal-overlay" style="display: none;">
+  <div class="modal-content">
+    <h3>Задание</h3>
+    <p id="task-text"></p>
+    <button  id="start-task-btn" onclick="window.startCurrentTask()">Выполнить задание</button>
+    <h6>После выполения задания нажмите ПРОБЕЛ</h6>
+  </div>
+</div>
+
+<div id="final-task-modal" class="modal-overlay" style="display: none;">
+  <div class="modal-content">
+    <h3>Все задания завершены!</h3>
+    <p>Все задания для этой страницы пройдены! Вы можете по желанию еще изучить страницу. Для перехода в меню  нажмите кнопку "Завершить эксперимент".</p>
+    <button id="final-task-ok-btn">OK</button>
+  </div>
+</div>
+ 
+<div id="survey-reminder-modal" class="modal-overlay" style="display: none;">
+  <div class="modal-content">
+    <h2>Спасибо за участие!</h2>
+    <p>Пройдите опрос по итогам эксперимента, ссылку на опрос вам предоставит организатор.</p>
+    <button id="survey-reminder-ok-btn">ОК</button>
+  </div>
+</div>
+  <script type="module" src="main.js" ></script>
+<script type="module" src="survey.js"></script>
+</body>
+</html>

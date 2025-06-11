@@ -1,0 +1,17 @@
+{
+  "name": "eye-tracker",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.19"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}
