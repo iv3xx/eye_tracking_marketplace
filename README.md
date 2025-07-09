@@ -29,14 +29,14 @@ The project was completed during **Anastasia S. Ivanova's** bachelor's thesis at
 
 ---
 
-### 🧑‍🤝‍🧑 Authors and Co-authors
+### Authors and Co-authors
 
 - **Main author:** Anastasia S. Ivanova, Student at the KMGS Department at SPbPU  
 - **Consultant and Secondary Author:** Vladimir A. Parkhomenko, Senior Lecturer at the KMGS Department at SPbPU
 
 ---
 
-### 📄 Citation
+### Citation
 
 Please, when using this repository, cite the following article:  
 [Modern Technologies, 2025 (PDF)](https://hsse.spbstu.ru/userfiles/files/1941_sovremennie_tehnologii_s_oblozhkoy.pdf) *(link will be updated after publication)*
