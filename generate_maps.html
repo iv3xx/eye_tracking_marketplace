@@ -1,0 +1,147 @@
+<!-- generate_maps.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генерация тепловых карт</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Подключение CSS -->
+</head>
+<body>
+
+    <h1>Выберите источник данных</h1>
+    
+    <!-- Новый выбор источника данных -->
+    <div>
+        <label><input type="radio" name="data-source" value="file" /> Файлы</label>
+        <label><input type="radio" name="data-source" value="db" /> База данных</label>
+    </div>
+
+    <!-- Площадка -->
+    <h4>Выберите площадку</h4>
+    <div>
+        <label><input type="radio" name="marketplace" value="Ozon" /> Ozon</label>
+        <label><input type="radio" name="marketplace" value="Wildberries" /> Wildberries</label>
+        <label><input type="radio" name="marketplace" value="ЯндексМаркет" /> Яндекс Маркет</label>
+        <label><input type="radio" name="marketplace" value="МегаМаркет" /> Мега Маркет</label>
+    </div>
+
+    <!-- Раздел -->
+    <h4>Выберите раздел</h4>
+    <div>
+        <label><input type="radio" name="section" value="Главная" /> Главная</label>
+        <label><input type="radio" name="section" value="Поиск" /> Поиск</label>
+        <label><input type="radio" name="section" value="Карточка" /> Карточка товара</label>
+    </div>
+
+    <!-- Кнопка для выбора -->
+    <button id="select-button">Выбрать</button>
+
+<!-- Контейнер для загрузки файлов и кнопки "Готово" -->
+<div id="file-upload-section" style="display:none;">
+<div class="section-block">    
+    <h2>Загрузить данные через файл</h2>
+    <form id="file-upload-form" enctype="multipart/form-data">
+        <input type="file" name="data_file" accept=".json, .txt, .csv" multiple>
+        <input type="submit" value="Загрузить файл">
+    </form>
+
+    <!-- Список файлов -->
+    <div id="file-list" style="max-height: 400px; overflow-y: auto;"></div>
+
+    <!-- Кнопка "Готово" -->
+    <button id="done-button" disabled>Готово</button>
+</div>
+</div>
+
+
+ <!-- Контейнер для загрузки из базы данных (если выбран соответствующий источник) -->
+<div id="db-upload-section" style="display:none;">
+ <div class="section-block">   
+    <h2>Загрузить данные из базы данных</h2>
+    <div id="participant-input" style="display:none;">
+        <label for="person_ids">Введите номера участников (через запятую):</label>
+        <input type="text" id="person_ids" name="person_ids"><br><br>
+
+        <!-- Кнопка для загрузки данных -->
+        <button id="load-db-button">Загрузить данные</button>
+    </div>
+
+    <!-- Вывод информации об участниках -->
+    <div id="db-load-result" style="margin-top: 20px; font-size: 16px;"></div>
+    <!-- Подробная информация об участниках -->
+    <div id="participant-info" style="margin-top: 20px; font-size: 16px;"></div>
+    <!-- Кнопка "Готово" -->
+    <button id="done-button-db" disabled>Готово</button>
+</div>
+</div>
+
+    <!-- Кнопка "Построить тепловые карты" -->
+<button id="generate-maps-button" style="display: none;">Построить тепловые карты</button>
+
+
+    <!-- Кнопка и блок вывода -->
+<button id="get-time-button" style="display: none;">Получить данные о времени выполнения задач</button>
+
+<div id="task-time-results" style="margin-top: 20px;"></div>
+
+
+ <!-- Кнопка для расчета оценок -->
+<button id="calculate-scores-button" style="display: none;">Вычислить оценки</button>
+
+<div id="scores-results" style="margin-top: 20px;"></div>
+
+
+<!-- Превью изображений -->
+<div id="heatmap-preview" style="margin-top: 30px; display: none;">
+    <h2>Сгенерированные тепловые карты:</h2>
+    <div id="images-container"></div>
+</div>
+
+<div id="map-overlay-controls" style="display: none; margin-top: 30px;">
+    <h3>Наложение карты на фрейм</h3>
+    <p>Выберите карту для наложения:</p>
+    <form id="heatmap-selection-form">
+        <label><input type="radio" name="overlay-map" value="heatmap2.png" checked /> heatmap2.png</label><br>
+        <label><input type="radio" name="overlay-map" value="circles.png" /> circles.png</label><br>
+        <label><input type="radio" name="overlay-map" value="intersection_zones.png" /> intersection_zones.png</label><br>
+        <label><input type="radio" name="overlay-map" value="circle_outlines.png" /> circle_outlines.png</label><br>
+        <label><input type="radio" name="overlay-map" value="intersection_zonesBlack.png" /> intersection_zonesBlack.png</label><br>
+    </form>
+    <button id="show-selected-overlay">Показать карту на фрейме</button>
+</div>
+
+<div id="overlay-frame-container" style="display: none; position: relative; z-index: 1;margin-top: 30px; display: none; width: 1599px;">
+    <div id="iframe-overlay-wrapper" style="position: relative;"></div>
+</div>
+
+
+
+<button id="save-data-button" style="margin-top:20px;">Сохранить полученные данные</button>
+
+<div id="save-data-modal" style="display:none;">
+<div class="section-block">    
+    <h3>Сохранить данные эксперимента</h3>
+    <label>
+      Дата эксперимента: <input type="date" id="experiment-date" required>
+    </label><br><br>
+    <label>
+      Название эксперимента: <input type="text" id="experiment-name" required>
+    </label><br><br>
+    <button id="confirm-save-button">Окей</button>
+    <button id="cancel-save-button">Отмена</button>
+</div>
+</div>
+
+<button id="rank-marketplaces-button">Ранжировать маркетплейсы</button>
+  <p>Предварительно сохраните данные исследования</p>
+<div id="rank-input-section" style="display:none; margin-top:10px;">
+    <input type="text" id="research-name-input" placeholder="Введите название исследования" />
+    <button id="rank-ok-button">Окей</button>
+</div>
+
+<div id="ranking-results" style="margin-top:20px;"></div>
+
+    <script src="script_maps.js"></script> 
+</body>
+</html>

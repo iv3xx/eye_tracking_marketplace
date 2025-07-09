@@ -1,0 +1,457 @@
+/* Общие стили для страницы */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: auto;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f6f8fa;
+    overflow: auto;
+   
+  }
+  
+  /* Центрируем экраны, кроме experiment-screen */
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  /* Элементы с экранами */
+  #screen-1, #form-screen, #control-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+   
+  }
+  
+  /* Заголовки */
+  h2, h3 {
+    color: #333;
+    font-weight: bold;
+  }
+  
+  /* Кнопки */
+  button {
+    padding: 12px 24px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #0066cc;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #004d99;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+
+  /* Модальное окно */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+/* Плашка для проверки прочтения правил */
+.modal-button {
+  margin: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #3477eb;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.modal-button:hover {
+  background-color: #245dc1;
+}
+  
+  /* ЭКРАН 1: Ввод данных пользователя */
+  #form-screen {
+    display: none;
+    background-color: #eef3f7;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+  }
+
+  /* Инструкции — нумерованный список */
+.instructions-list {
+  text-align: left;
+  font-size: 18px;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.instructions-list li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* Блок разработчика */
+.dev-block {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #e9ecef;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.dev-block h1 {
+  font-size: 20px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.dev-block button {
+  background-color: #6c757d;
+}
+
+.dev-block button:hover {
+  background-color: #5a6268;
+}
+
+  /* Стили для чекбоксов */
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;         
+  font-size: 16px;
+  margin: 2px 0;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-right: 10px;
+  width: 16px;
+  height: 16px;
+}
+  
+  /* Формы на экране 1.1 */
+  #form-screen input,
+  #form-screen select {
+    padding: 10px;
+    margin: 10px 0;
+    width: 80%;
+    max-width: 400px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Экран 2: Панель управления */
+  #control-screen {
+    display: none;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  #control-screen h4 {
+    font-weight: bold;
+  }
+  
+  /* Радио-кнопки на панели управления */
+  #control-screen div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  label {
+    font-size: 16px;
+  }
+
+  .button-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.radio-group {
+  margin: 20px 0;
+  border: none;
+  padding: 0;
+}
+
+.radio-group legend {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.radio-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.radio-row label {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+  /* Калибровка Экран*/
+  #calibration-container.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0000000e;
+  z-index: 999;
+}
+  
+  /* Экран 3: Эксперимент — iframe на весь экран */
+  #experiment-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  
+  /* Iframe занимает всё окно */
+  #myIframe {
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+  
+  /* Кнопка "Закончить эксперимент" в правом нижнем углу */
+  #end-experiment {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 14px 28px;
+    font-size: 16px;
+    background-color: #e53935;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+  }
+  
+  #end-experiment:hover {
+    background-color: #c62828;
+  }
+  /*Блок с задачами*/
+  .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: white;
+  padding: 2em;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.modal-content button, final-task-ok-btn {
+  margin-top: 1em;
+  padding: 0.5em 1.5em;
+}
+
+  /* Скрытые элементы */
+  .hidden {
+    display: none;
+  }
+  
+  /* Контейнер для кнопки "Начать тестирование" на первом экране */
+  #screen-1 {
+    display: flex;
+    /*flex-direction: column;*/
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* Экран опроса */
+.survey-block {
+  margin-bottom: 30px;
+}
+
+.survey-block table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.unanswered {
+    border: 2px solid red;
+    background-color: #ffeeee;
+}
+
+.survey-block th, .survey-block td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+  /* Увеличиваем размер шрифта для текста */
+  #screen-1 p {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  /*для генерации карт*/
+  #frame-container {
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;}
+
+    #heatmap-loading {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #fff3cd;
+      border: 1px solid #ffeeba;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-family: sans-serif;
+      font-size: 16px;
+      color: #856404;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  /*отображения отчета*/
+  .analysis-block {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-left: 6px solid #0066cc;
+    padding: 16px 24px;
+    margin: 16px auto;
+    max-width: 700px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    text-align: left;
+}
+.analysis-block p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.section-block {
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+.section-block h2, .section-block h3 {
+    margin-top: 0;
+}
+
+.ranking-table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.ranking-table th,
+.ranking-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.ranking-table thead {
+    background-color: #f2f2f2;
+}
+
+.ranking-table tbody tr.total-row {
+    background-color: #cce0ff; /* синий фон для итоговой строки */
+    font-weight: bold;
+}
+
+.analysis-block {
+    background-color: #f9f9f9;
+    border-left: 4px solid #3b82f6;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 6px;
+}
+
+.mp-name {
+    color: #1e293b; /* насыщенный тёмно-синий */
+    font-weight: 600;
+}
+
+.mp-score {
+    color: #64748b; /* приглушённый серо-синий */
+    font-weight: 500;
+    margin-left: 6px;
+}
+
+.ranked-marketplaces {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.ranked-marketplaces li {
+    margin-bottom: 5px;
+    font-size: 16px;
+}

@@ -1,0 +1,352 @@
+/*styles_CR.css*/
+
+/* Базовые стили */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f6f8fa;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Заголовки */
+h1, h2, h3 {
+  color: #333;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* Элементы ввода */
+input[type="text"], input[type="file"], select {
+  padding: 10px;
+  margin: 10px 0;
+  width: 80%;
+  max-width: 400px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Кнопки */
+button {
+  padding: 12px 24px;
+  margin: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #0066cc;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #004d99;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.button-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* Основной iframe */
+#frame-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  height: 500px;
+  border: 1px solid #ccc;
+  margin: 20px auto;
+  background-size: cover;
+  background-position: center;
+}
+
+#user-frame,
+#myIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Оверлей тепловой карты */
+#heatmap-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 10;
+  display: none;
+}
+
+/* Экран эксперимента */
+#experiment-screen {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+}
+
+#end-experiment {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 14px 28px;
+  font-size: 16px;
+  background-color: #e53935;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 10;
+}
+
+#end-experiment:hover {
+  background-color: #c62828;
+}
+
+/* Контейнер загрузки файлов */
+#file-upload-section {
+  margin-top: 40px;
+  width: 100%;
+  max-width: 600px;
+}
+
+#file-list {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+/* Скрытые элементы */
+.hidden {
+  display: none !important;
+}
+
+/* Уведомление загрузки тепловой карты */
+#heatmap-loading {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #856404;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+/* Контейнер панели управления */
+#control-screen {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+}
+
+/* Медиа-запросы (если нужно) */
+@media (max-width: 768px) {
+  button {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  input[type="text"],
+  input[type="file"] {
+    width: 100%;
+  }
+}
+
+/* Универсальный блок */
+.block {
+  width: 100%;
+  max-width: 600px;
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+ /* Формы на экране 1.1 */
+  #form-screen input,
+  #form-screen select {
+    padding: 10px;
+    margin: 10px 0;
+    width: 80%;
+    max-width: 400px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+
+/* Скрытие по умолчанию */
+.hidden {
+  display: none !important;
+}
+
+#tracker-dot {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border: 2px solid red;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Модальное окно */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Калибровка Экран*/
+  #calibration-container.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0000000e;
+  z-index: 1000;
+}
+  
+  /* Экран 3: Эксперимент — iframe на весь экран */
+  #experiment-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+
+  /* Iframe занимает всё окно */
+  #iframe {
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+
+  /* Кнопка "Закончить эксперимент" в правом нижнем углу */
+  #end-experiment {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 14px 28px;
+    font-size: 16px;
+    background-color: #e53935;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+  }
+   /* Стиль модального окна с инструкцией */
+  .modal-overlay-instr {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: auto;
+  }
+  .modal-content-instr {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+  }
+  .modal-content-instr h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+  .modal-content-instr ol {
+    padding-left: 20px;
+  }
+  .modal-content-instr li {
+    margin-bottom: 15px;
+  }
+  .modal-content-instr button {
+    margin-top: 15px;
+    padding: 8px 18px;
+    font-size: 16px;
+    background-color: #2c7be5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .modal-content-instr button:hover {
+    background-color: #1a5fcc;
+  }
+ 

@@ -1,0 +1,20 @@
+{
+  "name": "integration",
+  "version": "1.0.0",
+  "main": "php-integration.test.js",
+  "scripts": {
+    "test": "jest",
+    "test:maps": "jest maps-integration.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "axios": "^1.9.0",
+    "form-data": "^4.0.2",
+    "jest": "^29.7.0",
+    "mysql2": "^3.14.1",
+    "puppeteer": "^24.9.0"
+  }
+}
