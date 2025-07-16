@@ -16,7 +16,7 @@
 ## Цитирование
 
 Пожалуйста, используя этот репозиторий, цитируйте следующую статью:  
-[Современные технологии, 2025 (PDF)] (https://hsse.spbstu.ru/userfiles/files/1941_sovremennie_tehnologii_s_oblozhkoy.pdf) 
+[Современные технологии, 2025 (PDF)](https://hsse.spbstu.ru/userfiles/files/1941_sovremennie_tehnologii_s_oblozhkoy.pdf) 
 https://hsse.spbstu.ru/userfiles/files/1941_sovremennie_tehnologii_s_oblozhkoy.pdf, 2025 *(ссылка будет обновлена после публикации)*
 
 ---
